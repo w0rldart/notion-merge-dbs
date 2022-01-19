@@ -1,6 +1,9 @@
 import "dotenv/config";
 import { Client } from "@notionhq/client";
 import winston from "winston";
+import minimist from "minimist";
+
+const argvs = minimist(process.argv.slice(2));
 
 /**
  * Advanced logging
@@ -16,12 +19,12 @@ export const logger = winston.createLogger({
 /**
  * Source database or databases to process
  */
-export const SOURCE_DATABASES = JSON.parse(process.env.SOURCE_DATABASES);
+export const SOURCE_DATABASES = argvs.source || JSON.parse(process.env.SOURCE_DATABASES);
 
 /**
  * Target database where to inster the records from SOURCE_DATABASES
  */
-export const TARGET_DB = process.env.TARGET_DB;
+export const TARGET_DB = argvs.target || process.env.TARGET_DB;
 
 /**
  * Initialise Notion SDK Client
