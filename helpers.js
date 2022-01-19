@@ -50,10 +50,10 @@ const removeKeyInDict = (dict, key) => {
 // };
 
 /**
- * 
- * @param {String} dbId 
- * @param {Object} properties 
- * @returns 
+ *
+ * @param {String} dbId
+ * @param {Object} properties
+ * @returns
  */
 export const updateDbProperties = async (id, properties) => {
   try {
@@ -64,16 +64,16 @@ export const updateDbProperties = async (id, properties) => {
 
     return { ...response };
   } catch (error) {
-    logger.debug(error);
+    logger.debug("updateDbProperties", error);
     throw new Error(`Error updating database ${error.message}`);
   }
 };
 
 /**
- * 
- * @param {String} dbId 
- * @param {Object} properties 
- * @returns 
+ *
+ * @param {String} dbId
+ * @param {Object} properties
+ * @returns
  */
 export const createPage = async (dbId, page) => {
   try {
@@ -89,10 +89,10 @@ export const createPage = async (dbId, page) => {
 
     return { ...response };
   } catch (error) {
-    logger.debug(error);
+    logger.debug("createPage", error);
     throw new Error(`Error creating page ${error.message}`);
   }
-}
+};
 
 /**
  *
@@ -107,7 +107,7 @@ const getDatabaseById = async (id) => {
 
     return { ...response };
   } catch (error) {
-    logger.debug(error);
+    logger.debug("getDatabaseById", error);
     throw new Error(`Error retrieving database ${error.message}`);
   }
 };
@@ -142,7 +142,6 @@ export const getPagesFromDatabase = async (databaseId, databaseTitle) => {
   );
 
   return pages.map((page) => {
-    logger.info("++++PAGE++++", page);
     for (const entry of Object.keys(page.properties)) {
       removeKeyInDict(page.properties[entry], "id");
     }
@@ -155,8 +154,6 @@ export const getPagesFromDatabase = async (databaseId, databaseTitle) => {
       properties: page.properties,
     };
 
-    logger.info("++++RESULTS++++", pageData);
-
     newDatabase["pages"].push(pageData);
 
     return pageData;
@@ -164,27 +161,16 @@ export const getPagesFromDatabase = async (databaseId, databaseTitle) => {
 };
 
 /**
- * 
- * @param {String} id 
- * @returns 
+ *
+ * @param {String} id
+ * @returns
  */
 export const extractDatabaseProperties = async (id) => {
   const { title, properties } = await getDatabaseById(id);
   logger.info("extractDatabaseProperties", properties);
   for (const entry of Object.keys(properties)) {
     removeKeyInDict(properties[entry], "id");
-
-    logger.info(
-      "extractDatabaseProperties - properties entry",
-      properties[entry]
-    );
-
-    logger.info("extractDatabaseProperties - newDatabase before", newDatabase);
-
-    // Object.assign(newDatabase.properties, {entry: properties[entry]});
     newDatabase["properties"][entry] = properties[entry];
-
-    logger.info("extractDatabaseProperties - newDatabase after", newDatabase);
   }
 
   return title[0].plain_text;
