@@ -38,6 +38,9 @@ async function main() {
     throw new Error("This bot doesn't have access to any databases!");
   }
 
+  logger.info("Processing the following databases", SOURCE_DATABASES)
+  logger.info("Results will be added to this datagbase", TARGET_DB)
+
   for (const SOURCE_DATABASE of SOURCE_DATABASES) {
     let dbTitle = await extractDatabaseProperties(SOURCE_DATABASE)
     let dbPages = await getPagesFromDatabase(SOURCE_DATABASE, dbTitle)
