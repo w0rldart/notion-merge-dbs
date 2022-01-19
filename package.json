@@ -11,6 +11,9 @@
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@notionhq/client": "^0.4.12",
+    "bottleneck": "^2.19.5",
+    "dotenv": "^14.2.0",
+    "minimist": "^1.2.5",
     "winston": "^3.4.0"
   }
 }
