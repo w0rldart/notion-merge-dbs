@@ -1,7 +1,7 @@
 {
-  "name": "notion-db-merge",
+  "name": "notion-merge-dbs",
   "version": "1.0.1",
-  "description": "Notion DB Merger",
+  "description": "Notion Merge DBs",
   "author": "Alex Budurovici",
   "license": "AGPL-3.0-or-later",
   "homepage": "https://github.com/spofibo/notion-merge-dbs",

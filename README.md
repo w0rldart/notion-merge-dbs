@@ -1,10 +1,10 @@
-# Welcome to Notion DB Merger 👋
+# Welcome to Notion Merge DBs tool 👋
 ![Version](https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000)
 ![Prerequisite](https://img.shields.io/badge/node-%3E%3D16.0.0-blue.svg)
 ![Prerequisite](https://img.shields.io/badge/npm-%3E%3D8.3.0-blue.svg)
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/spofibo/notion-merge-dbs#readme)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/spofibo/notion-merge-dbs/graphs/commit-activity)
-[![License: AGPL--3.0--or--later](https://img.shields.io/github/license/spofibo/Notion DB Merger)](https://github.com/spofibo/notion-merge-dbs/blob/master/LICENSE)
+[![License: AGPL-3.0-or-later](https://img.shields.io/github/license/spofibo/notion-merge-dbs)](https://github.com/spofibo/notion-merge-dbs/blob/master/LICENSE)
 
 > Tool to help merge/sync one more databases to another
 
@@ -55,7 +55,7 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2022 [Alex Budurovici](https://github.com/spofibo).
 
-This project is [AGPL--3.0--or--later](https://github.com/spofibo/notion-merge-dbs/blob/master/LICENSE) licensed.
+This project is [AGPL-3.0-or-later](https://github.com/spofibo/notion-merge-dbs/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
