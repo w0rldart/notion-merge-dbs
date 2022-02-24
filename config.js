@@ -26,17 +26,24 @@ export const logger = winston.createLogger({
   ],
 });
 
-/**
- * Source database or databases to process
- */
- export const SOURCE_DATABASES = argvs.source || JSON.parse(process.env.SOURCE_DATABASES);
+export const settings = {
+  /**
+   * Source database or databases to process
+   */
+  SOURCE_DATABASES: argvs.source || JSON.parse(process.env.SOURCE_DATABASES),
+  
+  /**
+   * Target database where to inster the records from SOURCE_DATABASES
+   */
+  TARGET_DB: argvs.target || process.env.TARGET_DB,
 
- /**
-  * Target database where to inster the records from SOURCE_DATABASES
-  */
- export const TARGET_DB = argvs.target || process.env.TARGET_DB;
- 
- /**
-  * Initialise Notion SDK Client
-  */
- export const notion = new Client({ auth: process.env.NOTION_API_KEY });
+  /**
+   * 
+   */
+  CLEAN_PROPERTIES: argvs.clean_properties || process.env.CLEAN_PROPERTIES || false,
+}
+
+/**
+ * Initialise Notion SDK Client
+ */
+export const notion = new Client({ auth: process.env.NOTION_API_KEY });

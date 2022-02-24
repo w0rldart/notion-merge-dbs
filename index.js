@@ -1,6 +1,6 @@
 import Bottleneck from "bottleneck";
 
-import { notion, logger, SOURCE_DATABASES, TARGET_DB } from "./config.js";
+import { notion, logger, settings } from "./config.js";
 import {
   getPagesFromDatabase,
   extractDatabaseProperties,
@@ -38,24 +38,26 @@ async function main() {
     throw new Error("This bot doesn't have access to any databases!");
   }
 
-  logger.info("Processing the following databases", SOURCE_DATABASES)
-  logger.info("Results will be added to this datagbase", TARGET_DB)
+  logger.info("Processing the following databases", settings.SOURCE_DATABASES)
+  logger.info("Results will be added to this database", settings.TARGET_DB)
 
-  for (const SOURCE_DATABASE of SOURCE_DATABASES) {
-    let dbTitle = await extractDatabaseProperties(SOURCE_DATABASE)
-    let dbPages = await getPagesFromDatabase(SOURCE_DATABASE, dbTitle)
+  for (const databaseId of settings.SOURCE_DATABASES) {
+    let dbTitle = await extractDatabaseProperties(databaseId)
+    let dbPages = await getPagesFromDatabase(databaseId, dbTitle)
   }
 
   logger.debug("newDatabase", newDatabase);
 
-  const response = await updateDbProperties(TARGET_DB, newDatabase.properties);
+  const response = await updateDbProperties(settings.TARGET_DB, newDatabase.properties);
+
+  logger.debug("updateDbProperties", response);
 
   limiter.schedule(() => {
     const totalPages = newDatabase.pages.length
     const pages = newDatabase.pages.map((page, index) => {
       let realIndex = index + 1;
       logger.info(`Creating page ${realIndex} out of ${totalPages}`)
-      createPage(TARGET_DB, page)
+      createPage(settings.TARGET_DB, page)
     });
 
     return Promise.all(pages);
